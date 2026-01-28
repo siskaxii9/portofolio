@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taman Anggur Kukulu - Destinasi Wisata Premium</title>
+    <meta name="description" content="Nikmati keindahan Taman Anggur Kukulu, destinasi wisata premium dengan pemandangan kebun anggur yang memukau dan fasilitas lengkap.">
+    <meta name="keywords" content="taman anggur, kukulu, wisata, kebun anggur, destinasi wisata">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .dark .bg-white { background-color: #1f2937; }
+        .dark .text-gray-900 { color: #f9fafb; }
+        .dark .text-gray-600 { color: #d1d5db; }
+        .dark .bg-gray-50 { background-color: #374151; }
+        .dark .border-gray-200 { border-color: #4b5563; }
+        
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .weather-widget {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .grape-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f3f4f6' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="font-sans transition-colors duration-300">
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 transition-colors duration-300">
+        <nav class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-seedling text-purple-600 text-2xl"></i>
+                    <span class="text-xl font-bold text-gray-900">Taman Anggur Kukulu</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="text-gray-700 hover:text-purple-600 transition-colors">Beranda</a>
+                    <a href="#about" class="text-gray-700 hover:text-purple-600 transition-colors">Tentang</a>
+                    <a href="#gallery" class="text-gray-700 hover:text-purple-600 transition-colors">Galeri</a>
+                    <a href="#facilities" class="text-gray-700 hover:text-purple-600 transition-colors">Fasilitas</a>
+                    <a href="#events" class="text-gray-700 hover:text-purple-600 transition-colors">Event</a>
+                    <a href="#blog" class="text-gray-700 hover:text-purple-600 transition-colors">Blog</a>
+                    <a href="#contact" class="text-gray-700 hover:text-purple-600 transition-colors">Kontak</a>
+                </div>
+                
+                <!-- Controls -->
+                <div class="flex items-center space-x-4">
+                    <!-- Language Switcher -->
+                    <select id="languageSwitch" class="bg-transparent border border-gray-300 rounded px-2 py-1 text-sm">
+                        <option value="id">🇮🇩 ID</option>
+                        <option value="en">🇺🇸 EN</option>
+                    </select>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-moon text-gray-600"></i>
+                    </button>
+                    
+                    <!-- Search -->
+                    <button id="searchToggle" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-search text-gray-600"></i>
+                    </button>
+                    
+                    <!-- Mobile Menu -->
+                    <button id="mobileMenuToggle" class="md:hidden p-2">
+                        <i class="fas fa-bars text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Search Bar -->
+            <div id="searchBar" class="hidden mt-4 relative">
+                <input type="text" placeholder="Cari destinasi, fasilitas, atau event..." 
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="#home" class="text-gray-700 hover:text-purple-600 py-2">Beranda</a>
+                    <a href="#about" class="text-gray-700 hover:text-purple-600 py-2">Tentang</a>
+                    <a href="#gallery" class="text-gray-700 hover:text-purple-600 py-2">Galeri</a>
+                    <a href="#facilities" class="text-gray-700 hover:text-purple-600 py-2">Fasilitas</a>
+                    <a href="#events" class="text-gray-700 hover:text-purple-600 py-2">Event</a>
+                    <a href="#blog" class="text-gray-700 hover:text-purple-600 py-2">Blog</a>
+                    <a href="#contact" class="text-gray-700 hover:text-purple-600 py-2">Kontak</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen parallax grape-pattern" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 800\"><defs><linearGradient id=\"grape\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\"><stop offset=\"0%\" style=\"stop-color:%23667eea\"/><stop offset=\"100%\" style=\"stop-color:%23764ba2\"/></linearGradient></defs><rect width=\"1200\" height=\"800\" fill=\"url(%23grape)\"/><circle cx=\"200\" cy=\"150\" r=\"80\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"400\" cy=\"300\" r=\"60\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"800\" cy=\"200\" r=\"70\" fill=\"%23ffffff\" opacity=\"0.1\"/><circle cx=\"1000\" cy=\"400\" r=\"90\" fill=\"%23ffffff\" opacity=\"0.1\"/></svg>')">
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center text-white px-4">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in">
+                    <span data-id="hero-title">Taman Anggur Kukulu</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 fade-in" data-id="hero-subtitle">
+                    Nikmati Keindahan Kebun Anggur Premium di Jantung Alam
+                </p>
+                <div class="space-x-4 fade-in">
+                    <button class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full text-lg transition-colors">
+                        <span data-id="hero-cta1">Jelajahi Sekarang</span>
+                    </button>
+                    <button class="border-2 border-white text-white hover:bg-white hover:text-purple-600 px-8 py-3 rounded-full text-lg transition-colors">
+                        <span data-id="hero-cta2">Virtual Tour 360°</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Weather Widget -->
+    <div class="weather-widget text-white p-4 m-4 rounded-lg shadow-lg fade-in">
+        <div class="flex items-center justify-between">
+            <div>
+                <h3 class="font-semibold" data-id="weather-title">Cuaca Hari Ini</h3>
+                <p class="text-sm opacity-90" data-id="weather-location">Taman Anggur Kukulu</p>
+            </div>
+            <div class="text-right">
+                <div class="text-2xl font-bold">28°C</div>
+                <div class="text-sm opacity-90">☀️ <span data-id="weather-condition">Cerah</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Counter -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="fade-in">
+                    <div class="text-4xl font-bold text-purple-600 counter" data-target="50000">0</div>
+                    <p class="text-gray-600 mt-2" data-id="stat-visitors">Pengunjung</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl font-bold text-purple-600 counter" data-target="15">0</div>
+                    <p class="text-gray-600 mt-2" data-id="stat-facilities">Fasilitas</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl font-bold text-purple-600 counter" data-target="98">0</div>
+                    <p class="text-gray-600 mt-2" data-id="stat-satisfaction">% Kepuasan</p>
+                </div>
+                <div class="fade-in">
+                    <div class="text-4xl font-bold text-purple-600 counter" data-target="24">0</div>
+                    <p class="text-gray-600 mt-2" data-id="stat-events">Event/Tahun</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6" data-id="about-title">
+                        Tentang Taman Anggur Kukulu
+                    </h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed" data-id="about-desc1">
+                        Taman Anggur Kukulu adalah destinasi wisata premium yang menawarkan pengalaman unik di tengah kebun anggur yang asri. Terletak di dataran tinggi dengan pemandangan yang memukau, taman ini menjadi tempat perfect untuk relaksasi dan edukasi.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed" data-id="about-desc2">
+                        Dengan fasilitas modern dan pelayanan terbaik, kami berkomitmen memberikan pengalaman tak terlupakan bagi setiap pengunjung yang datang.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center p-4 bg-purple-50 rounded-lg">
+                            <i class="fas fa-leaf text-purple-600 text-2xl mb-2"></i>
+                            <p class="font-semibold" data-id="feature-organic">100% Organik</p>
+                        </div>
+                        <div class="text-center p-4 bg-purple-50 rounded-lg">
+                            <i class="fas fa-award text-purple-600 text-2xl mb-2"></i>
+                            <p class="font-semibold" data-id="feature-certified">Bersertifikat</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg p-8 text-white">
+                            <i class="fas fa-seedling text-6xl mb-4"></i>
+                            <h3 class="text-2xl font-bold mb-4" data-id="about-highlight">Kebun Anggur Premium</h3>
+                            <p data-id="about-highlight-desc">Nikmati keindahan ribuan tanaman anggur yang ditanam dengan teknik modern dan ramah lingkungan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-id="gallery-title">Galeri Foto & Video</h2>
+                <p class="text-gray-600" data-id="gallery-subtitle">Jelajahi keindahan Taman Anggur Kukulu melalui koleksi foto dan video kami</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="flex justify-center mb-8 fade-in">
+                <div class="bg-white rounded-full p-1 shadow-lg">
+                    <button class="filter-btn active px-6 py-2 rounded-full transition-colors" data-filter="all">
+                        <span data-id="filter-all">Semua</span>
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-full transition-colors" data-filter="vineyard">
+                        <span data-id="filter-vineyard">Kebun Anggur</span>
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-full transition-colors" data-filter="facilities">
+                        <span data-id="filter-facilities">Fasilitas</span>
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-full transition-colors" data-filter="events">
+                        <span data-id="filter-events">Event</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="gallery-item vineyard fade-in">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
+                        <div class="bg-gradient-to-br from-purple-400 to-purple-600 h-64 flex items-center justify-center">
+                            <i class="fas fa-seedling text-white text-6xl"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <button class="text-white text-2xl">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item facilities fade-in">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
+                        <div class="bg-gradient-to-br from-green-400 to-green-600 h-64 flex items-center justify-center">
+                            <i class="fas fa-building text-white text-6xl"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <button class="text-white text-2xl">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item events fade-in">
+                    <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
+                        <div class="bg-gradient-to-br from-orange-400 to-orange-600 h-64 flex items-center justify-center">
+                            <i class="fas fa-calendar text-white text-6xl"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <button class="text-white text-2xl">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 360° Virtual Tour Button -->
+            <div class="text-center mt-12 fade-in">
+                <button class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-full text-lg transition-colors">
+                    <i class="fas fa-vr-cardboard mr-2"></i>
+                    <span data-id="virtual-tour">Virtual Tour 360°</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-id="facilities-title">Fasilitas & Layanan</h2>
+                <p class="text-gray-600" data-id="facilities-subtitle">Nikmati berbagai fasilitas premium untuk kenyamanan Anda</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-gray-50 rounded-lg fade-in">
+                    <i class="fas fa-utensils text-purple-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2" data-id="facility-restaurant">Restoran Premium</h3>
+                    <p class="text-gray-600" data-id="facility-restaurant-desc">Nikmati hidangan lezat dengan pemandangan kebun anggur</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gray-50 rounded-lg fade-in">
+                    <i class="fas fa-car text-purple-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2" data-id="facility-parking">Parkir Luas</h3>
+                    <p class="text-gray-600" data-id="facility-parking-desc">Area parkir yang aman dan nyaman untuk kendaraan Anda</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gray-50 rounded-lg fade-in">
+                    <i class="fas fa-wifi text-purple-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2" data-id="facility-wifi">WiFi Gratis</h3>
+                    <p class="text-gray-600" data-id="facility-wifi-desc">Koneksi internet cepat di seluruh area taman</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gray-50 rounded-lg fade-in">
+                    <i class="fas fa-camera text-purple-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2" data-id="facility-photo">Spot Foto Instagramable</h3>
+                    <p class="text-gray-600" data-id="facility-photo-desc">Berbagai spot foto menarik untuk kenangan indah</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gray-50 rounded-lg fade-in">
+                    <i class="fas fa-shopping-bag text-purple-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2" data-id="facility-shop">Toko Souvenir</h3>
+                    <p class="text-gray-600" data-id="facility-shop-desc">Produk anggur dan souvenir khas Kukulu</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gray-50 rounded-lg fade-in">
+                    <i class="fas fa-users text-purple-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2" data-id="facility-guide">Pemandu Wisata</h3>
+                    <p class="text-gray-600" data-id="facility-guide-desc">Pemandu berpengalaman untuk tur yang informatif</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tickets & Schedule -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-id="tickets-title">Tiket & Jadwal Kunjungan</h2>
+                <p class="text-gray-600" data-id="tickets-subtitle">Informasi lengkap harga tiket dan jam operasional</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Ticket Prices -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6" data-id="ticket-prices">Harga Tiket</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-4 bg-white rounded-lg shadow">
+                            <div>
+                                <h4 class="font-semibold" data-id="ticket-adult">Dewasa</h4>
+                                <p class="text-gray-600 text-sm" data-id="ticket-adult-desc">Usia 13 tahun ke atas</p>
+                            </div>
+                            <span class="text-2xl font-bold text-purple-600">Rp 50.000</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-4 bg-white rounded-lg shadow">
+                            <div>
+                                <h4 class="font-semibold" data-id="ticket-child">Anak-anak</h4>
+                                <p class="text-gray-600 text-sm" data-id="ticket-child-desc">Usia 3-12 tahun</p>
+                            </div>
+                            <span class="text-2xl font-bold text-purple-600">Rp 30.000</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-4 bg-white rounded-lg shadow">
+                            <div>
+                                <h4 class="font-semibold" data-id="ticket-group">Grup (min 20 orang)</h4>
+                                <p class="text-gray-600 text-sm" data-id="ticket-group-desc">Diskon khusus grup</p>
+                            </div>
+                            <span class="text-2xl font-bold text-purple-600">Rp 40.000</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Schedule -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6" data-id="schedule-title">Jam Operasional</h3>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span class="font-semibold" data-id="schedule-weekday">Senin - Jumat</span>
+                                <span>08:00 - 17:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold" data-id="schedule-weekend">Sabtu - Minggu</span>
+                                <span>07:00 - 18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-semibold" data-id="schedule-holiday">Hari Libur</span>
+                                <span>07:00 - 18:00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-yellow-50 rounded-lg">
+                            <p class="text-sm text-yellow-800" data-id="schedule-note">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Jam operasional dapat berubah pada hari libur nasional
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-id="events-title">Event & Kegiatan</h2>
+                <p class="text-gray-600" data-id="events-subtitle">Jangan lewatkan berbagai event menarik di Taman Anggur Kukulu</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg fade-in">
+                    <div class="bg-gradient-to-br from-purple-400 to-purple-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-wine-glass text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-purple-600 text-sm font-semibold mb-2">15 Desember 2024</div>
+                        <h3 class="text-xl font-bold mb-2" data-id="event1-title">Festival Panen Anggur</h3>
+                        <p class="text-gray-600 mb-4" data-id="event1-desc">Ikuti festival panen anggur tahunan dengan berbagai aktivitas menarik</p>
+                        <button class="text-purple-600 font-semibold hover:text-purple-700">
+                            <span data-id="event-detail">Lihat Detail</span> →
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg fade-in">
+                    <div class="bg-gradient-to-br from-green-400 to-green-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-camera text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-purple-600 text-sm font-semibold mb-2">22 Desember 2024</div>
+                        <h3 class="text-xl font-bold mb-2" data-id="event2-title">Workshop Fotografi</h3>
+                        <p class="text-gray-600 mb-4" data-id="event2-desc">Belajar teknik fotografi landscape di tengah kebun anggur</p>
+                        <button class="text-purple-600 font-semibold hover:text-purple-700">
+                            <span data-id="event-detail">Lihat Detail</span> →
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg fade-in">
+                    <div class="bg-gradient-to-br from-orange-400 to-orange-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-music text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-purple-600 text-sm font-semibold mb-2">31 Desember 2024</div>
+                        <h3 class="text-xl font-bold mb-2" data-id="event3-title">Konser Tahun Baru</h3>
+                        <p class="text-gray-600 mb-4" data-id="event3-desc">Rayakan tahun baru dengan konser musik di bawah bintang</p>
+                        <button class="text-purple-600 font-semibold hover:text-purple-700">
+                            <span data-id="event-detail">Lihat Detail</span> →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-id="testimonials-title">Testimoni Pengunjung</h2>
+                <p class="text-gray-600" data-id="testimonials-subtitle">Apa kata mereka tentang Taman Anggur Kukulu</p>
+            </div>
+            
+            <div class="testimonial-carousel relative">
+                <div class="testimonial-container overflow-hidden">
+                    <div class="testimonial-track flex transition-transform duration-500">
+                        <div class="testimonial-slide flex-shrink-0 w-full md:w-1/3 px-4">
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                                        A
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="font-semibold">Andi Pratama</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600" data-id="testimonial1">
+                                    "Tempat yang luar biasa! Pemandangan kebun anggur sangat indah dan fasilitas sangat lengkap. Pasti akan kembali lagi!"
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-slide flex-shrink-0 w-full md:w-1/3 px-4">
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                                        S
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="font-semibold">Sari Dewi</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600" data-id="testimonial2">
+                                    "Pengalaman yang tak terlupakan! Staff sangat ramah dan makanan di restoran enak sekali. Highly recommended!"
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-slide flex-shrink-0 w-full md:w-1/3 px-4">
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                                        B
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="font-semibold">Budi Santoso</h4>
+                                        <div class="text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600" data-id="testimonial3">
+                                    "Spot foto yang instagramable banget! Anak-anak juga senang main di sini. Tempat yang cocok untuk keluarga."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="testimonial-prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50">
+                    <i class="fas fa-chevron-left text-gray-600"></i>
+                </button>
+                <button class="testimonial-next absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50">
+                    <i class="fas fa-chevron-right text-gray-600"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-id="blog-title">Artikel & Blog Wisata</h2>
+                <p class="text-gray-600" data-id="blog-subtitle">Tips dan informasi menarik seputar wisata anggur</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <article class="bg-gray-50 rounded-lg overflow-hidden shadow-lg fade-in">
+                    <div class="bg-gradient-to-br from-purple-400 to-purple-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-seedling text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-purple-600 text-sm font-semibold mb-2">10 Desember 2024</div>
+                        <h3 class="text-xl font-bold mb-2" data-id="blog1-title">Tips Berkunjung ke Kebun Anggur</h3>
+                        <p class="text-gray-600 mb-4" data-id="blog1-desc">Panduan lengkap untuk mendapatkan pengalaman terbaik saat berkunjung ke kebun anggur</p>
+                        <button class="text-purple-600 font-semibold hover:text-purple-700">
+                            <span data-id="blog-read">Baca Selengkapnya</span> →
+                        </button>
+                    </div>
+                </article>
+                
+                <article class="bg-gray-50 rounded-lg overflow-hidden shadow-lg fade-in">
+                    <div class="bg-gradient-to-br from-green-400 to-green-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-camera text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-purple-600 text-sm font-semibold mb-2">8 Desember 2024</div>
+                        <h3 class="text-xl font-bold mb-2" data-id="blog2-title">Spot Foto Terbaik di Kukulu</h3>
+                        <p class="text-gray-600 mb-4" data-id="blog2-desc">Temukan lokasi-lokasi terbaik untuk mengambil foto yang instagramable</p>
+                        <button class="text-purple-600 font-semibold hover:text-purple-700">
+                            <span data-id="blog-read">Baca Selengkapnya</span> →
+                        </button>
+                    </div>
+                </article>
+                
+                <article class="bg-gray-50 rounded-lg overflow-hidden shadow-lg fade-in">
+                    <div class="bg-gradient-to-br from-orange-400 to-orange-600 h-48 flex items-center justify-center">
+                        <i class="fas fa-wine-glass text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-purple-600 text-sm font-semibold mb-2">5 Desember 2024</div>
+                        <h3 class="text-xl font-bold mb-2" data-id="blog3-title">Sejarah Budidaya Anggur</h3>
+                        <p class="text-gray-600 mb-4" data-id="blog3-desc">Mengenal lebih dalam tentang sejarah dan teknik budidaya anggur di Indonesia</p>
+                        <button class="text-purple-600 font-semibold hover:text-purple-700">
+                            <span data-id="blog-read">Baca Selengkapnya</span> →
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Form -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4" data-id="reservation-title">Form Pemesanan & Reservasi</h2>
+                    <p class="text-gray-600" data-id="reservation-subtitle">Pesan tiket Anda sekarang untuk pengalaman yang tak terlupakan</p>
+                </div>
+                
+                <form class="bg-white rounded-lg shadow-lg p-8 fade-in" id="reservationForm">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2" data-id="form-name">Nama Lengkap</label>
+                            <input type="text" id="fullName" name="fullName" required 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2" data-id="form-email">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2" data-id="form-phone">Nomor Telepon</label>
+                            <input type="tel" id="phone" name="phone" required 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        
+                        <div>
+                            <label for="visitDate" class="block text-sm font-medium text-gray-700 mb-2" data-id="form-date">Tanggal Kunjungan</label>
+                            <input type="date" id="visitDate" name="visitDate" required 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        
+                        <div>
+                            <label for="adultTickets" class="block text-sm font-medium text-gray-700 mb-2" data-id="form-adult-tickets">Tiket Dewasa</label>
+                            <select id="adultTickets" name="adultTickets" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="1">1 Tiket</option>
+                                <option value="2">2 Tiket</option>
+                                <option value="3">3 Tiket</option>
+                                <option value="4">4 Tiket</option>
+                                <option value="5">5+ Tiket</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="childTickets" class="block text-sm font-medium text-gray-700 mb-2" data-id="form-child-tickets">Tiket Anak</label>
+                            <select id="childTickets" name="childTickets" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="0">0 Tiket</option>
+                                <option value="1">1 Tiket</option>
+                                <option value="2">2 Tiket</option>
+                                <option value="3">3 Tiket</option>
+                                <option value="4">4+ Tiket</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <label for="specialRequests" class="block text-sm font-medium text-gray-700 mb-2" data-id="form-requests">Permintaan Khusus</label>
+                        <textarea id="specialRequests" name="specialRequests" rows="4" 
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                  placeholder="Tuliskan permintaan khusus Anda (opsional)"></textarea>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full text-lg transition-colors">
+                            <i class="fas fa-ticket-alt mr-2"></i>
+                            <span data-id="form-submit">Pesan Tiket Sekarang</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Integration -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-id="map-title">Lokasi & Petunjuk Arah</h2>
+                <p class="text-gray-600" data-id="map-subtitle">Temukan kami dengan mudah menggunakan peta interaktif</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <div class="bg-gray-200 h-96 rounded-lg flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-map-marker-alt text-purple-600 text-6xl mb-4"></i>
+                            <p class="text-gray-600" data-id="map-placeholder">Peta Interaktif Taman Anggur Kukulu</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6" data-id="location-info">Informasi Lokasi</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-purple-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold" data-id="address-title">Alamat</h4>
+                                <p class="text-gray-600">Jl. Kebun Anggur No. 123, Kukulu, Indonesia</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-car text-purple-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold" data-id="transport-title">Transportasi</h4>
+                                <p class="text-gray-600" data-id="transport-desc">Dapat diakses dengan kendaraan pribadi atau transportasi umum</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-purple-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-semibold" data-id="distance-title">Jarak Tempuh</h4>
+                                <p class="text-gray-600" data-id="distance-desc">30 menit dari pusat kota, 1 jam dari bandara</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 space-y-3">
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg transition-colors">
+                            <i class="fas fa-directions mr-2"></i>
+                            <span data-id="get-directions">Dapatkan Petunjuk Arah</span>
+                        </button>
+                        <button class="w-full border border-purple-600 text-purple-600 hover:bg-purple-50 py-3 rounded-lg transition-colors">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span data-id="call-us">Hubungi Kami</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-id="contact-title">Hubungi Kami</h2>
+                <p class="text-gray-600" data-id="contact-subtitle">Ada pertanyaan? Jangan ragu untuk menghubungi tim kami</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6" data-id="contact-info">Informasi Kontak</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold" data-id="phone-title">Telepon</h4>
+                                <p class="text-gray-600">+62 123 456 7890</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold" data-id="email-title">Email</h4>
+                                <p class="text-gray-600">info@tamananggur-kukulu.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-clock text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold" data-id="hours-title">Jam Layanan</h4>
+                                <p class="text-gray-600" data-id="hours-desc">Senin - Minggu: 08:00 - 17:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="mt-8">
+                        <h4 class="font-semibold mb-4" data-id="social-title">Ikuti Kami</h4>
+                        <div class="flex space-x-4">
+                            <button class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </button>
+                            <button class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white hover:bg-green-700 transition-colors">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="fade-in">
+                    <form class="bg-white rounded-lg shadow-lg p-8" id="contactForm">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6" data-id="contact-form-title">Kirim Pesan</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label for="contactName" class="block text-sm font-medium text-gray-700 mb-2" data-id="contact-name">Nama</label>
+                                <input type="text" id="contactName" name="contactName" required 
+                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label for="contactEmail" class="block text-sm font-medium text-gray-700 mb-2" data-id="contact-email">Email</label>
+                                <input type="email" id="contactEmail" name="contactEmail" required 
+                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label for="contactSubject" class="block text-sm font-medium text-gray-700 mb-2" data-id="contact-subject">Subjek</label>
+                                <input type="text" id="contactSubject" name="contactSubject" required 
+                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label for="contactMessage" class="block text-sm font-medium text-gray-700 mb-2" data-id="contact-message">Pesan</label>
+                                <textarea id="contactMessage" name="contactMessage" rows="5" required 
+                                          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full mt-6 bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg transition-colors">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            <span data-id="contact-send">Kirim Pesan</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Form -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4" data-id="feedback-title">Saran & Penilaian</h2>
+                    <p class="text-gray-600" data-id="feedback-subtitle">Bantu kami meningkatkan pelayanan dengan memberikan saran dan penilaian Anda</p>
+                </div>
+                
+                <form class="bg-gray-50 rounded-lg shadow-lg p-8 fade-in" id="feedbackForm">
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-3" data-id="rating-label">Berikan Penilaian Anda</label>
+                        <div class="flex justify-center space-x-2">
+                            <button type="button" class="rating-star text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="1">
+                                <i class="fas fa-star"></i>
+                            </button>
+                            <button type="button" class="rating-star text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="2">
+                                <i class="fas fa-star"></i>
+                            </button>
+                            <button type="button" class="rating-star text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="3">
+                                <i class="fas fa-star"></i>
+                            </button>
+                            <button type="button" class="rating-star text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="4">
+                                <i class="fas fa-star"></i>
+                            </button>
+                            <button type="button" class="rating-star text-3xl text-gray-300 hover:text-yellow-400 transition-colors" data-rating="5">
+                                <i class="fas fa-star"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" id="rating" name="rating" value="0">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="feedbackName" class="block text-sm font-medium text-gray-700 mb-2" data-id="feedback-name">Nama (Opsional)</label>
+                        <input type="text" id="feedbackName" name="feedbackName" 
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="feedbackMessage" class="block text-sm font-medium text-gray-700 mb-2" data-id="feedback-message">Saran & Komentar</label>
+                        <textarea id="feedbackMessage" name="feedbackMessage" rows="5" required 
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                  placeholder="Bagikan pengalaman dan saran Anda..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg transition-colors">
+                        <i class="fas fa-heart mr-2"></i>
+                        <span data-id="feedback-submit">Kirim Saran & Penilaian</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-seedling text-purple-400 text-2xl"></i>
+                        <span class="text-xl font-bold">Taman Anggur Kukulu</span>
+                    </div>
+                    <p class="text-gray-400 mb-4" data-id="footer-desc">
+                        Destinasi wisata premium dengan pengalaman kebun anggur yang tak terlupakan di jantung alam Indonesia.
+                    </p>
+                    <div class="flex space-x-4">
+                        <button class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </button>
+                        <button class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </button>
+                        <button class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center hover:bg-purple-700 transition-colors">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-id="footer-links">Tautan Cepat</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors" data-id="footer-home">Beranda</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors" data-id="footer-about">Tentang Kami</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition-colors" data-id="footer-gallery">Galeri</a></li>
+                        <li><a href="#facilities" class="text-gray-400 hover:text-white transition-colors" data-id="footer-facilities">Fasilitas</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white transition-colors" data-id="footer-events">Event</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-id="footer-services">Layanan</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" data-id="footer-tickets">Pemesanan Tiket</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" data-id="footer-tour">Tur Pribadi</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" data-id="footer-group">Paket Grup</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" data-id="footer-event">Event Khusus</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors" data-id="footer-catering">Katering</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-id="footer-contact">Kontak</h3>
+                    <div class="space-y-2 text-gray-400">
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>Jl. Kebun Anggur No. 123, Kukulu</p>
+                        <p><i class="fas fa-phone mr-2"></i>+62 123 456 7890</p>
+                        <p><i class="fas fa-envelope mr-2"></i>info@tamananggur-kukulu.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Taman Anggur Kukulu. <span data-id="footer-rights">Semua hak dilindungi.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot">
+        <button id="chatbotToggle" class="w-16 h-16 bg-purple-600 hover:bg-purple-700 rounded-full shadow-lg flex items-center justify-center text-white transition-colors">
+            <i class="fas fa-comments text-xl"></i>
+        </button>
+        
+        <div id="chatbotWindow" class="hidden absolute bottom-20 right-0 w-80 bg-white rounded-lg shadow-xl border">
+            <div class="bg-purple-600 text-white p-4 rounded-t-lg">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-semibold" data-id="chatbot-title">Panduan Wisata</h3>
+                    <button id="chatbotClose" class="text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-4 h-64 overflow-y-auto" id="chatbotMessages">
+                <div class="mb-4">
+                    <div class="bg-gray-100 rounded-lg p-3 text-sm">
+                        <span data-id="chatbot-welcome">Halo! Saya asisten virtual Taman Anggur Kukulu. Ada yang bisa saya bantu?</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 border-t">
+                <div class="flex space-x-2">
+                    <input type="text" id="chatbotInput" placeholder="Ketik pesan Anda..." 
+                           class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <button id="chatbotSend" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar (Mobile) -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50 md:hidden">
+        <div class="p-4">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-seedling text-purple-600 text-xl"></i>
+                    <span class="font-bold text-gray-900">Kukulu</span>
+                </div>
+                <button id="sidebarClose" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="space-y-4">
+                <a href="#home" class="block text-gray-700 hover:text-purple-600 py-2">Beranda</a>
+                <a href="#about" class="block text-gray-700 hover:text-purple-600 py-2">Tentang</a>
+                <a href="#gallery" class="block text-gray-700 hover:text-purple-600 py-2">Galeri</a>
+                <a href="#facilities" class="block text-gray-700 hover:text-purple-600 py-2">Fasilitas</a>
+                <a href="#events" class="block text-gray-700 hover:text-purple-600 py-2">Event</a>
+                <a href="#blog" class="block text-gray-700 hover:text-purple-600 py-2">Blog</a>
+                <a href="#contact" class="block text-gray-700 hover:text-purple-600 py-2">Kontak</a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            id: {
+                'hero-title': 'Taman Anggur Kukulu',
+                'hero-subtitle': 'Nikmati Keindahan Kebun Anggur Premium di Jantung Alam',
+                'hero-cta1': 'Jelajahi Sekarang',
+                'hero-cta2': 'Virtual Tour 360°',
+                'weather-title': 'Cuaca Hari Ini',
+                'weather-location': 'Taman Anggur Kukulu',
+                'weather-condition': 'Cerah',
+                'stat-visitors': 'Pengunjung',
+                'stat-facilities': 'Fasilitas',
+                'stat-satisfaction': '% Kepuasan',
+                'stat-events': 'Event/Tahun'
+            },
+            en: {
+                'hero-title': 'Kukulu Grape Garden',
+                'hero-subtitle': 'Experience the Beauty of Premium Vineyard in the Heart of Nature',
+                'hero-cta1': 'Explore Now',
+                'hero-cta2': 'Virtual Tour 360°',
+                'weather-title': 'Today\'s Weather',
+                'weather-location': 'Kukulu Grape Garden',
+                'weather-condition': 'Sunny',
+                'stat-visitors': 'Visitors',
+                'stat-facilities': 'Facilities',
+                'stat-satisfaction': '% Satisfaction',
+                'stat-events': 'Events/Year'
+            }
+        };
+
+        // Language Switcher
+        document.getElementById('languageSwitch').addEventListener('change', function() {
+            const selectedLang = this.value;
+            const elements = document.querySelectorAll('[data-id]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-id');
